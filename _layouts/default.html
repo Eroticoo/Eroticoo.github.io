@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{ site.title }}</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <!-- 添加 Mermaid 支持，用于显示流程图 -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
@@ -12,13 +12,16 @@
 </head>
 <body>
     <header>
-        <h1>{{ site.title }}</h1>
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
     </header>
     <main>
         {{ content }}
+        {% if page.date %}
+        <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S %z" }}</p>
+        {% endif %}
     </main>
     <footer>
-        <p>© 2024 {{ site.author }}</p>
+        <p>© {{ site.time | date: '%Y' }} {{ site.author }}</p>
     </footer>
 </body>
 </html>
