@@ -2,6 +2,8 @@
 
 在您的博客项目根目录下，运行自动化脚本：
 cd "/Users/erotico/Desktop/Master/All Code/Pycode/Eroticoo.github.io"
+
+分行
 ./auto_update.sh
 
 # 步骤 2：输入文章标题
