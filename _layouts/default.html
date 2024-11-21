@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- 添加 Mermaid 支持，用于显示流程图 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>{{ site.title }}</h1>
+    </header>
+    <main>
+        {{ content }}
+    </main>
+    <footer>
+        <p>© 2024 {{ site.author }}</p>
+    </footer>
+</body>
+</html>

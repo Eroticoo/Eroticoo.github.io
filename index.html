@@ -1,0 +1,9 @@
+---
+layout: default
+---
+{% for post in site.posts %}
+<article class="post">
+    <div class="post-date">{{ post.date | date: "%Y-%m-%d %H:%M" }}</div>
+    {{ post.content }}
+</article>
+{% endfor %}
