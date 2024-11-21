@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>{{ page.title }} - {{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- 添加 Mermaid 支持，用于显示流程图 -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
@@ -12,6 +13,14 @@
 </head>
 <body>
     <header>
+        <nav>
+            <ul>
+                <li><a href="{{ '/' | relative_url }}">首页</a></li>
+                <li><a href="{{ '/about' | relative_url }}">关于我</a></li>
+                <li><a href="{{ '/contact' | relative_url }}">联系</a></li>
+                <li><a href="{{ '/projects' | relative_url }}">项目</a></li>
+            </ul>
+        </nav>
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
     </header>
     <main>
