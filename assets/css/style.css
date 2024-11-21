@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #8b84f0;
     color: #ffffff;
     padding: 20px;
     text-align: center;
@@ -31,7 +31,7 @@ main {
 }
 
 footer {
-    background-color: #4CAF50;
+    background-color: #8b84f0;
     color: #ffffff;
     padding: 10px;
     text-align: center;
@@ -41,13 +41,13 @@ footer {
 }
 
 a {
-    color: #4CAF50;
+    color: #8b84f0;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 a:hover {
-    color: #45a049;
+    color: #8b84f0;
     text-decoration: underline;
 }
 
@@ -61,7 +61,7 @@ p {
 }
 
 code {
-    background-color: #f4f4f4;
+    background-color: #efc3c3;
     padding: 2px 4px;
     border-radius: 4px;
 }
