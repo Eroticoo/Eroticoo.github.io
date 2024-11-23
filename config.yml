@@ -1,6 +1,4 @@
-title: "Eroticoo的博客"
-description: "这里是我的个人博客"
-baseurl: ""
-url: "https://eroticoo.github.io"
-author: "Eroticoo"
+remote_theme: mmistakes/minimal-mistakes
+plugins:
+  - jekyll-remote-theme
 timezone: Asia/Shanghai

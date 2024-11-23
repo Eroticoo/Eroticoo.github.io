@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # 获取当前日期和时间，精确到秒
-CURRENT_DATE=$(date +"%Y-%m-%d %H:%M:%S")
-# 获取当前日期，格式为 YYYY-MM-DD
+CURRENT_DATE=$(date +"%Y-%m-%d %H:%M:%S %z")    # 获取当前日期，格式为 YYYY-MM-DD
 FILE_DATE=$(date +"%Y-%m-%d")
 
 # 读取文章标题
