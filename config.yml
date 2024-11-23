@@ -1,4 +1,13 @@
+# 基本设置
+title: Your Site Title
+description: Your site description
 timezone: Asia/Shanghai
+encoding: utf-8
+
+# 主题设置
 remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-remote-theme
+
+# 时间格式设置
+future: true
