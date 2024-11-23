@@ -63,8 +63,8 @@ main {
 /* 文章标题样式 */
 .post-content h1 {
     text-align: center;
-    color: #1a237e;
-    font-size: 1.8em;  /* 稍微调小标题 */
+    color: #9b77ce;
+    font-size: 1.8em;
     margin: 1em 0;
     font-weight: 600;
 }
