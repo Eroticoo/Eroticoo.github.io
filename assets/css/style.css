@@ -25,9 +25,11 @@ header a:hover {
 }
 
 main {
-    margin-left: 220px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 20px;
     max-width: 800px;
+    text-align: center;
 }
 
 /* 文章内容样式 */
@@ -36,6 +38,7 @@ main {
     padding-bottom: 4em;
     border-bottom: 3px solid #8b84f0;
     position: relative;
+    text-align: left;
 }
 
 /* 添加装饰性分隔符 */
@@ -105,15 +108,34 @@ code {
     border-radius: 4px;
 }
 
-/* 添加侧边栏样式 */
+/* 修改侧边栏样式 */
 .sidebar {
     width: 200px;
     position: fixed;
-    left: 0;
+    left: -180px;
     top: 100px;
     padding: 20px;
     background-color: #ffffff;
     border-right: 1px solid #e6e6fa;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+/* 鼠标悬停时显示完整侧边栏 */
+.sidebar:hover {
+    left: 0;
+}
+
+/* 添加一个视觉提示 */
+.sidebar::after {
+    content: "≡";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8b84f0;
+    font-size: 20px;
 }
 
 .archive-list {
@@ -135,7 +157,7 @@ code {
     text-decoration: underline;
 }
 
-/* 在小屏幕上隐藏侧边栏 */
+/* 在小屏幕上的样式保持不变 */
 @media (max-width: 768px) {
     .sidebar {
         display: none;
