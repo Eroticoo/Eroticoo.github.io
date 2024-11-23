@@ -32,16 +32,32 @@ main {
 
 /* 文章内容样式 */
 .post-content {
-    margin-bottom: 3em;
-    padding-bottom: 3em;
-    border-bottom: 3px solid #e6e6fa;  /* 淡紫色，加粗的分隔线 */
+    margin-bottom: 4em;
+    padding-bottom: 4em;
+    border-bottom: 3px solid #8b84f0;
+    position: relative;
 }
 
-/* 最后一篇文章不需要分隔线 */
+/* 添加装饰性分隔符 */
+.post-content:after {
+    content: "✧";
+    position: absolute;
+    bottom: -1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #8b84f0;
+    font-size: 1.5em;
+}
+
+/* 最后一篇文章样式 */
 .post-content:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
+}
+
+.post-content:last-child:after {
+    display: none;
 }
 
 /* 文章标题样式 */
