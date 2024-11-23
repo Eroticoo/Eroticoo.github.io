@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -24,6 +25,15 @@
             </li>
         {% endfor %}
         </ul>
+    </div>
+
+    <div class="mobile-archive">
+        <select onchange="if(this.value) window.location.hash=this.value;">
+            <option value="">选择月份</option>
+            {% for yearMonth in postsByYearMonth %}
+            <option value="{{ yearMonth.name }}">{{ yearMonth.name }} ({{ yearMonth.items.size }})</option>
+            {% endfor %}
+        </select>
     </div>
 
     <main>

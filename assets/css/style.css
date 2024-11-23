@@ -113,7 +113,7 @@ code {
 .sidebar {
     width: 200px;
     position: fixed;
-    left: -170px;
+    left: -180px;
     top: 100px;
     height: 100vh;
     padding: 20px;
@@ -126,22 +126,53 @@ code {
 
 .sidebar:hover {
     left: 0;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
 }
 
-/* 添加一个更明显的视觉提示 */
-.sidebar::after {
-    content: "☰";
-    position: absolute;
-    right: 10px;
-    top: 20px;
-    color: #8b84f0;
-    font-size: 24px;
-    transition: all 0.3s ease;
+/* 在移动设备上完全隐藏侧边栏，改用顶部下拉菜单 */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;  /* 完全隐藏原侧边栏 */
+    }
+    
+    /* 添加移动端专用的归档菜单 */
+    .mobile-archive {
+        display: block;
+        width: 100%;
+        background: #fff;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e6e6fa;
+    }
+    
+    .mobile-archive select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #8b84f0;
+        border-radius: 4px;
+        background: #fff;
+        color: #333;
+        font-size: 16px;
+    }
+
+    main {
+        width: 95%;
+        margin: 0 auto;
+        padding: 10px;
+        left: 0;
+    }
+
+    .post-content {
+        width: 100%;
+        margin: 0 0 2em 0;
+        padding: 0 10px;
+    }
 }
 
-.sidebar:hover::after {
-    transform: rotate(90deg);
+/* 在大屏幕上隐藏移动端归档菜单 */
+@media (min-width: 769px) {
+    .mobile-archive {
+        display: none;
+    }
 }
 
 .archive-list {
@@ -168,17 +199,6 @@ code {
 @media (max-width: 1024px) {
     main {
         width: 90%;
-        left: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        display: none;
-    }
-    main {
-        width: 95%;
-        margin: 0 auto;
         left: 0;
     }
 }
