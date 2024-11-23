@@ -16,7 +16,8 @@
     <main>
         {{ content }}
         {% if page.date %}
-        <p>发布时间：{{ page.date | date: '%F %T %z' }}</p>
+        {% assign china_time = page.date | date: '%s' | plus: 28800 %}
+        <p>发布时间：{{ china_time | date: '%F %T' }} +0800</p>
         {% endif %}
     </main>
     <footer>
