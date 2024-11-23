@@ -4,10 +4,35 @@
     <meta charset="utf-8">
     <title>{{ page.title }} - {{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <!-- 添加 Mermaid 支持，用于显示流程图 -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
+        
+        // 添加时间转换函数
+        function formatDateTime(dateString) {
+            const date = new Date(dateString);
+            // 强制转换为东八区时间
+            const options = {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+                timeZone: 'Asia/Shanghai'
+            };
+            return date.toLocaleString('zh-CN', options) + ' +0800';
+        }
+
+        // 页面加载完成后执行
+        window.onload = function() {
+            const timeElement = document.getElementById('post-time');
+            if (timeElement) {
+                const originalTime = timeElement.getAttribute('data-time');
+                timeElement.textContent = '发布时间：' + formatDateTime(originalTime);
+            }
+        }
     </script>
 </head>
 <body>
@@ -17,7 +42,9 @@
     <main>
         {{ content }}
         {% if page.date %}
-        <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S %z" }}</p>
+        <p id="post-time" data-time="{{ page.date | date_to_xmlschema }}">
+            发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S %z" }}
+        </p>
         {% endif %}
     </main>
     <footer>
