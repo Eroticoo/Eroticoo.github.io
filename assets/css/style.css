@@ -30,6 +30,29 @@ main {
     margin: auto;
 }
 
+/* 文章内容样式 */
+.post-content {
+    margin-bottom: 3em;
+    padding-bottom: 3em;
+    border-bottom: 3px solid #e6e6fa;  /* 淡紫色，加粗的分隔线 */
+}
+
+/* 最后一篇文章不需要分隔线 */
+.post-content:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* 文章标题样式 */
+.post-content h1 {
+    text-align: center;
+    color: #1a237e;
+    font-size: 1.8em;  /* 稍微调小标题 */
+    margin: 1em 0;
+    font-weight: 600;
+}
+
 footer {
     background-color: #8b84f0;
     color: #ffffff;
