@@ -8,24 +8,25 @@
     <script>
         mermaid.initialize({ startOnLoad: true });
         
-        // 转换 UTC 时间到东八区
-        function convertToCST(utcString) {
-            const date = new Date(utcString);
-            const offset = 8 * 60 * 60 * 1000; // 8小时的毫秒数
-            const cstDate = new Date(date.getTime() + offset);
-            
-            const pad = (num) => String(num).padStart(2, '0');
-            
-            return `${cstDate.getUTCFullYear()}-${pad(cstDate.getUTCMonth() + 1)}-${pad(cstDate.getUTCDate())} ` +
-                   `${pad(cstDate.getUTCHours())}:${pad(cstDate.getUTCMinutes())}:${pad(cstDate.getUTCSeconds())} +0800`;
-        }
-
+        // 直接处理时间显示
         window.onload = function() {
             const timeElements = document.querySelectorAll('.post-time');
             timeElements.forEach(element => {
-                const utcTime = element.getAttribute('data-time');
-                if (utcTime) {
-                    element.textContent = '发布时间：' + convertToCST(utcTime);
+                const originalTime = element.getAttribute('data-time');
+                if (originalTime) {
+                    const date = new Date(originalTime);
+                    // 直接获取本地时间字符串
+                    const localTime = date.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false,
+                        timeZone: 'Asia/Shanghai'
+                    });
+                    element.textContent = '发布时间：' + localTime + ' +0800';
                 }
             });
         }
@@ -38,7 +39,7 @@
     <main>
         {{ content }}
         {% if page.date %}
-        <p class="post-time" data-time="{{ page.date | date_to_xmlschema }}">
+        <p class="post-time" data-time="{{ page.date | date_to_rfc822 }}">
             发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S %z" }}
         </p>
         {% endif %}
