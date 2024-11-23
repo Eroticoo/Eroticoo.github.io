@@ -23,7 +23,9 @@
     <main>
         {{ content }}
         {% if page.date %}
-        <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S" }} {{ site.timezone_offset }}</p>
+        {% if page.date %}
+         <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S" }} +0800</p>
+        {% endif %}  
          {% endif %}
     </main>
     <footer>
