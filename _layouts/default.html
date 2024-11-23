@@ -15,10 +15,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{{ '/' | relative_url }}">首页</a></li>
-                <li><a href="{{ '/about' | relative_url }}">关于我</a></li>
-                <li><a href="{{ '/contact' | relative_url }}">联系</a></li>
-                <li><a href="{{ '/projects' | relative_url }}">项目</a></li>
+                <li><a href="{{ '/about' | relative_url }}">About Me</a></li>
             </ul>
         </nav>
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
@@ -26,7 +23,7 @@
     <main>
         {{ content }}
         {% if page.date %}
-        <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S %z" }}</p>
+        <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S" }} +0800</p>
         {% endif %}
     </main>
     <footer>
