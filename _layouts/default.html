@@ -23,10 +23,8 @@
     <main>
         {{ content }}
         {% if page.date %}
-        {% if page.date %}
-         <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S" }} +0800</p>
-        {% endif %}  
-         {% endif %}
+            <p>发布时间：{{ page.date | date: "%Y-%m-%d %H:%M:%S %z" }}</p>
+        {% endif %}
     </main>
     <footer>
         <p>© {{ site.time | date: '%Y' }} {{ site.author }}</p>
