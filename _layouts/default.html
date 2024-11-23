@@ -13,9 +13,23 @@
     <header>
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
     </header>
+    
+    <div class="sidebar">
+        <h2>归档</h2>
+        <ul class="archive-list">
+        {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y年%m月'" %}
+        {% for yearMonth in postsByYearMonth %}
+            <li>
+                <a href="#{{ yearMonth.name }}">{{ yearMonth.name }} ({{ yearMonth.items.size }})</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
     <main>
         {{ content }}
     </main>
+
     <footer>
         <p>© {{ site.time | date: '%Y' }} {{ site.author }}</p>
     </footer>
