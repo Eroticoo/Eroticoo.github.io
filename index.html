@@ -3,7 +3,7 @@ layout: default
 ---
 {% for post in site.posts %}
 <article class="post">
-    <div class="post-date">{{ post.date | date: "%Y-%m-%d %H:%M:%S" }}</div>
+    <div class="post-date">{{ post.date | date: "%Y-%m-%d %H:%M:%S %z" }}</div>
     {{ post.content }}
 </article>
 {% endfor %}
