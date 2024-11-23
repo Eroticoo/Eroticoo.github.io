@@ -2,4 +2,3 @@ remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-remote-theme
 timezone: Asia/Shanghai
-timezone_offset: "+0800"
