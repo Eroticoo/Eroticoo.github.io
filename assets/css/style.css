@@ -25,16 +25,17 @@ header a:hover {
 }
 
 main {
-    margin-left: auto;
-    margin-right: auto;
+    width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    max-width: 800px;
-    text-align: center;
+    position: relative;
+    left: 20px;
 }
 
 /* 文章内容样式 */
 .post-content {
-    margin-bottom: 4em;
+    width: 100%;
+    margin: 0 auto 4em auto;
     padding-bottom: 4em;
     border-bottom: 3px solid #8b84f0;
     position: relative;
@@ -112,35 +113,41 @@ code {
 .sidebar {
     width: 200px;
     position: fixed;
-    left: -180px;
+    left: -170px;
     top: 100px;
+    height: 100vh;
     padding: 20px;
-    background-color: #ffffff;
-    border-right: 1px solid #e6e6fa;
-    transition: left 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-right: 2px solid #8b84f0;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     z-index: 1000;
 }
 
-/* 鼠标悬停时显示完整侧边栏 */
 .sidebar:hover {
     left: 0;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
 }
 
-/* 添加一个视觉提示 */
+/* 添加一个更明显的视觉提示 */
 .sidebar::after {
-    content: "≡";
+    content: "☰";
     position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
+    right: 10px;
+    top: 20px;
     color: #8b84f0;
-    font-size: 20px;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.sidebar:hover::after {
+    transform: rotate(90deg);
 }
 
 .archive-list {
     list-style: none;
     padding: 0;
+    margin-top: 40px;
 }
 
 .archive-list li {
@@ -158,12 +165,20 @@ code {
 }
 
 /* 在小屏幕上的样式保持不变 */
+@media (max-width: 1024px) {
+    main {
+        width: 90%;
+        left: 0;
+    }
+}
+
 @media (max-width: 768px) {
     .sidebar {
         display: none;
     }
     main {
-        margin-left: auto;
-        margin-right: auto;
+        width: 95%;
+        margin: 0 auto;
+        left: 0;
     }
 }
