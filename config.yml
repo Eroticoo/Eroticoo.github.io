@@ -12,3 +12,6 @@ plugins:
 
 # 时间格式设置
 future: true
+
+# 强制刷新缓存
+build_revision: {{ site.time | date: '%s' }}
