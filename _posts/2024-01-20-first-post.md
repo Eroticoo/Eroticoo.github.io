@@ -1,8 +1,7 @@
 ---
-layout: default
-title: "First Post"
-date: 2024-01-20 00:00:00 +0800
-timezone: Asia/Shanghai
+layout: post
+title: "我的第一篇博客"
+date: 2024-01-20 20:00:00 
 ---
 
 ## 论文公式流程图
