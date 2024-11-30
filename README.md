@@ -35,7 +35,8 @@ _posts/2023-10-25-wo-de-xin-bo-ke-wen-zhang.md
 
 由于您修改了文章内容，需要将更改提交并推送到 GitHub。**bash**
 	1.	添加更改到 Git 
-    git add "_posts/2023-10-25-wo-de-xin-bo-ke-wen-zhang.md"
+    git add "_posts/2024-11-26-Nothing.md"
+2024-11-26-Nothing.md
 	2.	提交更改
     git commit -m "更新文章内容：我的新博客文章"
     3.	推送到 GitHub
