@@ -1,47 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description | default: '记录学习、写作与灵感的数字花园' }}">
+    <title>{{ site.title | default: 'Erotico 的数字花园' }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
 </head>
+{% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y年%m月'" %}
+{% assign totalPosts = site.posts | size %}
+{% assign latestPost = site.posts | first %}
 <body>
-    <header>
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-    </header>
-    
-    <div class="sidebar">
-        <h2>归档</h2>
-        <ul class="archive-list">
-        {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y年%m月'" %}
-        {% for yearMonth in postsByYearMonth %}
-            <li>
-                <a href="#{{ yearMonth.name }}">{{ yearMonth.name }} ({{ yearMonth.items.size }})</a>
-            </li>
-        {% endfor %}
-        </ul>
+    <div class="app-shell">
+        <header class="site-header" id="top">
+            <div class="brand">
+                <span class="brand-dot"></span>
+                <a href="{{ '/' | relative_url }}">{{ site.title | default: 'Erotico' }}</a>
+            </div>
+            <nav class="site-nav">
+                <a href="{{ '/' | relative_url }}#latest">日志</a>
+                <a href="{{ '/' | relative_url }}#archive">归档</a>
+                <a href="{{ '/about' | relative_url }}">关于</a>
+                <a href="https://github.com/Eroticoo" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="切换主题">
+                    <span class="sun">☀️</span>
+                    <span class="moon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <section class="hero" id="cover">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Digital Garden · {{ site.time | date: '%Y' }}</p>
+                <h1>{{ site.title | default: 'Erotico 的数字花园' }}</h1>
+                <p class="hero-lede">
+                    {{ site.description | default: '记录系统控制、去中心化网络与日常灵感的成长笔记。' }}
+                </p>
+                <div class="hero-cta">
+                    <a class="btn primary" href="#latest">浏览最新</a>
+                    <a class="btn ghost" href="{{ '/about' | relative_url }}">关于作者</a>
+                </div>
+                <ul class="hero-metrics">
+                    <li>
+                        <span>{{ totalPosts }}</span>
+                        <p>累计文章</p>
+                    </li>
+                    <li>
+                        <span>{{ site.categories | size }}</span>
+                        <p>关注主题</p>
+                    </li>
+                    <li>
+                        <span>
+                            {% if latestPost %}
+                                {{ latestPost.date | date: '%Y-%m-%d' }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </span>
+                        <p>最近更新</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="hero-cover">
+                <div class="cover-card">
+                    <p class="cover-label">Latest entry</p>
+                    {% if latestPost %}
+                        <h3>{{ latestPost.title | default: latestPost.date | date: '%Y-%m-%d' }}</h3>
+                        <p>{{ latestPost.excerpt | strip_html | truncate: 110 }}</p>
+                        <a class="cover-link" href="{{ latestPost.url | relative_url }}">阅读全文 →</a>
+                    {% else %}
+                        <h3>期待下一篇灵感</h3>
+                        <p>开始写作，数字花园才会持续生长。</p>
+                    {% endif %}
+                </div>
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+            </div>
+        </section>
+
+        <section class="layout-grid">
+            <aside class="sticky-panels">
+                <div class="panel" id="archive">
+                    <div class="panel-head">
+                        <h2>时间轴归档</h2>
+                        <span>{{ totalPosts }} 篇</span>
+                    </div>
+                    <div class="archive-scroll">
+                        <ul class="archive-pills">
+                            {% for yearMonth in postsByYearMonth %}
+                                <li>
+                                    <a href="#{{ yearMonth.name }}">{{ yearMonth.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-head">
+                        <h2>Now / 此刻关注</h2>
+                    </div>
+                    <ul class="now-list">
+                        <li>Solana 链学习与 Rust 编程手札</li>
+                        <li>神经网络可解释性 & 自监督探索</li>
+                        <li>控制系统 + Web3 的跨域灵感</li>
+                    </ul>
+                </div>
+                <div class="panel secondary">
+                    <h2>订阅</h2>
+                    <p>把本站加入书签或使用 RSS，随时捕捉新的灵感碎片。</p>
+                    <a class="btn secondary" href="{{ '/feed.xml' | relative_url }}">订阅 RSS</a>
+                </div>
+            </aside>
+
+            <div class="content-column" id="latest">
+                <div class="mobile-archive panel">
+                    <label for="archiveSelect">快速跳转月份</label>
+                    <select id="archiveSelect" onchange="if(this.value) window.location.hash=this.value;">
+                        <option value="">请选择</option>
+                        {% for yearMonth in postsByYearMonth %}
+                            <option value="{{ yearMonth.name }}">{{ yearMonth.name }} ({{ yearMonth.items.size }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {{ content }}
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <p>© {{ site.time | date: '%Y' }} {{ site.author | default: 'Erotico' }} · Crafted with curiosity.</p>
+        </footer>
     </div>
 
-    <div class="mobile-archive">
-        <select onchange="if(this.value) window.location.hash=this.value;">
-            <option value="">选择月份</option>
-            {% for yearMonth in postsByYearMonth %}
-            <option value="{{ yearMonth.name }}">{{ yearMonth.name }} ({{ yearMonth.items.size }})</option>
-            {% endfor %}
-        </select>
-    </div>
+    <script>
+        (function() {
+            const storageKey = 'preferred-theme';
+            const toggle = document.querySelector('.theme-toggle');
+            const root = document.documentElement;
 
-    <main>
-        {{ content }}
-    </main>
+            const setTheme = (theme) => {
+                root.setAttribute('data-theme', theme);
+                localStorage.setItem(storageKey, theme);
+            };
 
-    <footer>
-        <p>© {{ site.time | date: '%Y' }} {{ site.author }}</p>
-    </footer>
+            const initTheme = () => {
+                const saved = localStorage.getItem(storageKey);
+                if (saved) {
+                    setTheme(saved);
+                } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    setTheme('dark');
+                }
+            };
+
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    setTheme(current);
+                });
+            }
+
+            initTheme();
+        })();
+    </script>
 </body>
 </html>

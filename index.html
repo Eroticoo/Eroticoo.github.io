@@ -1,13 +1,32 @@
----
 layout: default
 ---
 
 {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y年%m月'" %}
+<div class="month-groups">
 {% for yearMonth in postsByYearMonth %}
-    <h2 id="{{ yearMonth.name }}" style="color: #8b84f0; padding-top: 20px;">{{ yearMonth.name }}</h2>
-    {% for post in yearMonth.items %}
-        <div class="post-content">
-            {{ post.content }}
-        </div>
-    {% endfor %}
+    <section class="month-group" id="{{ yearMonth.name }}">
+        <div class="month-badge">📆 {{ yearMonth.name }}</div>
+        {% for post in yearMonth.items %}
+            <article class="post-card" id="{{ post.id | slugify }}">
+                <div class="post-card-header">
+                    <div class="post-card-date">{{ post.date | date: '%Y-%m-%d' }}</div>
+                    <h3><a href="{{ post.url | relative_url }}">{{ post.title | default: post.date | date: '%Y-%m-%d' }}</a></h3>
+                    {% if post.tags %}
+                    <div class="post-card-tags">
+                        {% for tag in post.tags %}
+                            <span>#{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="post-card-body">
+                    {{ post.content }}
+                </div>
+                <div class="post-card-footer">
+                    <a class="read-link" href="{{ post.url | relative_url }}" aria-label="阅读 {{ post.title }}">在独立页面阅读 →</a>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
 {% endfor %}
+</div>
