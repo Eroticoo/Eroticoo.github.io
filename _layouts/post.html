@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} · {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <main style="max-width: 760px; margin: 0 auto; padding: 24px 16px 56px;">
+    <article>
+      <header style="margin-bottom: 20px;">
+        <h1 style="margin: 0 0 8px;">{{ page.title }}</h1>
+        <p style="opacity: .7; margin: 0;">{{ page.date | date: "%Y-%m-%d" }}</p>
+      </header>
+
+      <div class="post-content">
+        {{ content }}
+      </div>
+    </article>
+
+    <p style="margin-top: 32px;">
+      <a href="{{ '/' | relative_url }}">← 返回首页</a>
+    </p>
+  </main>
+</body>
+</html>
