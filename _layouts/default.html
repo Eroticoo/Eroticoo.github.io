@@ -17,8 +17,9 @@
 {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y年%m月'" %}
 {% assign totalPosts = site.posts | size %}
 {% assign latestPost = site.posts | first %}
-<body>
+<body class="{% if page.url == '/' %}is-home{% else %}is-subpage{% endif %}">
     <div class="app-shell">
+        {% if page.url == '/' %}
         <header class="site-header" id="top">
             <div class="brand">
                 <span class="brand-dot"></span>
@@ -134,6 +135,11 @@
                 {{ content }}
             </div>
         </section>
+        {% else %}
+        <section class="subpage-content">
+            {{ content }}
+        </section>
+        {% endif %}
 
         <footer class="site-footer">
             <p>© {{ site.time | date: '%Y' }} {{ site.author | default: 'Erotico' }} · Crafted with curiosity.</p>
@@ -165,6 +171,22 @@
                     const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
                     setTheme(current);
                 });
+            }
+
+            const header = document.querySelector('.site-header');
+            if (header && document.body.classList.contains('is-home')) {
+                let lastY = window.scrollY;
+                window.addEventListener('scroll', () => {
+                    const y = window.scrollY;
+                    if (y <= 20) {
+                        header.classList.remove('is-hidden');
+                    } else if (y > lastY) {
+                        header.classList.add('is-hidden');
+                    } else {
+                        header.classList.remove('is-hidden');
+                    }
+                    lastY = y;
+                }, { passive: true });
             }
 
             initTheme();
