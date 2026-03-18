@@ -1,29 +1,18 @@
-# 基本设置
-title: Your Site Title
-description: Your site description
+title: Eroticoo
+email: eroticoo@users.noreply.github.com
+description: Personal site and notes
 timezone: Asia/Shanghai
 encoding: utf-8
 
-# 主题设置
+url: "https://eroticoo.github.io"
+baseurl: ""
+
 remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-seo-tag
 
-# 时间格式设置
 future: true
-
-# 强制刷新缓存
-build_revision: {{ site.time | date: '%s' }}
-
-# 规则设置
-rule-providers:
-  direct:
-    type: file
-    behavior: domain
-    path: ./direct_rules.yaml
-
-rules:
-  - RULE-SET,direct,DIRECT
-  - DOMAIN-SUFFIX,ys.gxnu.edu.cn,DIRECT
-  - MATCH,🐟 漏网之鱼
+markdown: kramdown
